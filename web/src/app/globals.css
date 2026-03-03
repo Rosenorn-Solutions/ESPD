@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors – ESPD design tokens */
+  --color-primary-black: #000000;
+  --color-accent-gold: #eecf5b;
+  --color-body-text: #757575;
+  --color-dark-text: #2b2b2b;
+  --color-light-gray: #a3a3a3;
+  --color-footer-bg: #000000;
+  --color-footer-text: #f7f7f7;
+
+  /* Fonts */
+  --font-heading: var(--font-raleway);
+  --font-body: var(--font-roboto);
+  --font-accent: var(--font-shadows-into-light);
+
+  /* Spacing */
+  --breakpoint-nav: 1280px;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-body-text);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary-black);
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
