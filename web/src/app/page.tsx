@@ -89,6 +89,7 @@ export default function HomePage() {
       <Divider />
       <ContentSection
         heading="Hvem er ESPD?"
+        headingAlign="left"
         imageSrc="/images/about-1.jpg"
         imageAlt="ESPD frivillige"
         imagePosition="left"
