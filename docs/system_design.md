@@ -519,37 +519,155 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=everydaysexismproject.dk
 
 ---
 
-## 13. Implementation Phases
+## 13. Implementation Status & Phases
 
-### Phase 1 — Foundation (Week 1–2)
-- [ ] Initialize Next.js project with TypeScript + Tailwind CSS
-- [ ] Set up Sanity.io project and schemas
-- [ ] Implement design tokens (colors, typography, spacing) in Tailwind config
-- [ ] Build `Header`, `Footer`, `MobileMenu`, `NavDropdown` components
-- [ ] Create root layout with fonts, metadata, skip-link
-- [ ] Build `ScrollToTop`, `Breadcrumbs`
+> **Last updated:** 2026-03-28
 
-### Phase 2 — Home Page (Week 2–3)
-- [ ] Build all home page sections (Hero, About, CardGrid, Social, CTA)
-- [ ] Implement image gallery with lightbox
-- [ ] Set up social embed components (conditional on cookie consent)
-- [ ] Build `CookieConsent` banner
-- [ ] Implement `SearchOverlay`
+### Current Inventory
 
-### Phase 3 — Content Pages (Week 3–4)
-- [ ] Build dynamic `[slug]` page with CMS content rendering
-- [ ] Implement Portable Text renderer for rich content
-- [ ] Build `AccordionFAQ` for FAQ page
-- [ ] Build `ContactForm` + API route for email sending
-- [ ] Create "Find hjælp" resources page
-- [ ] Populate all CMS content from existing site
+#### Configuration & Build (all complete)
 
-### Phase 4 — Polish & Launch (Week 4–5)
-- [ ] SEO: metadata, JSON-LD, sitemap, robots.txt
+| File | Status |
+|---|---|
+| `web/package.json` — Next.js 16, React 19, Sanity client, react-hook-form, Zod, Tailwind CSS 4 | ✅ Done |
+| `web/next.config.ts` — Remote images from `cdn.sanity.io` | ✅ Done |
+| `web/tsconfig.json` — Strict mode, `@/*` path alias | ✅ Done |
+| `web/postcss.config.mjs` — Tailwind CSS v4 PostCSS plugin | ✅ Done |
+| `web/eslint.config.mjs` — Next.js core web vitals + TypeScript rules | ✅ Done |
+| `sanity/sanity.config.ts` — Studio config with structure plugin | ✅ Done |
+| `sanity/sanity.cli.ts` — CLI config | ✅ Done |
+
+#### Sanity CMS Schemas (all complete)
+
+| Schema | Status |
+|---|---|
+| `schemas/index.ts` — Aggregates all types | ✅ Done |
+| `schemas/blockContent.ts` — Portable text (rich text, lists, links, images) | ✅ Done |
+| `schemas/page.ts` — Generic content page with page-builder sections | ✅ Done |
+| `schemas/faqItem.ts` — FAQ question/answer, orderable | ✅ Done |
+| `schemas/homePage.ts` — Home page singleton (hero, about, cards, social, CTA) | ✅ Done |
+| `schemas/navigation.ts` — Navigation singleton, 3-level nesting | ✅ Done |
+| `schemas/sections.ts` — heroSection, contentSection, cardGrid, ctaSection | ✅ Done |
+| `schemas/siteSettings.ts` — Title, logo, social links, contact emails, footer | ✅ Done |
+
+#### Layout Components (all complete)
+
+| Component | Status |
+|---|---|
+| `components/layout/Header.tsx` — Logo row + nav bar, responsive, search toggle | ✅ Done |
+| `components/layout/Footer.tsx` — 3-column footer, social icons, copyright | ✅ Done |
+| `components/layout/MobileMenu.tsx` — Full-screen overlay, recursive nav tree | ✅ Done |
+| `components/layout/NavDropdown.tsx` — Hover-triggered, 2-level nested sub-menus | ✅ Done |
+| `components/layout/Breadcrumbs.tsx` — Schema.org breadcrumbs, aria-labels | ✅ Done |
+| `components/layout/ScrollToTop.tsx` — Fixed bottom-right, shows after 300px scroll | ✅ Done |
+
+#### Section Components (all complete)
+
+| Component | Status |
+|---|---|
+| `components/sections/HeroSection.tsx` — Configurable bg, shape dividers (clouds/curve) | ✅ Done |
+| `components/sections/ContentSection.tsx` — Text + image, left/right image position | ✅ Done |
+| `components/sections/CardGrid.tsx` — 1–3 column responsive grid | ✅ Done |
+| `components/sections/CTASection.tsx` — Black bg, curve divider, Button link | ✅ Done |
+| `components/sections/PodcastSection.tsx` — Podcast image + social embed placeholder | ✅ Done |
+| `components/sections/SocialFeedSection.tsx` — 3-column social links, consent-gated | ✅ Done |
+
+#### UI Components (all complete)
+
+| Component | Status |
+|---|---|
+| `components/ui/Button.tsx` — Primary/secondary/outline, sm/md/lg sizes | ✅ Done |
+| `components/ui/AccordionItem.tsx` — Expand/collapse with animation | ✅ Done |
+| `components/ui/Divider.tsx` — Accent-gold rule, optional alignment | ✅ Done |
+| `components/ui/ImageGallery.tsx` — Grid + lightbox, prev/next, keyboard nav | ✅ Done |
+| `components/ui/SearchOverlay.tsx` — Header dropdown, navigates to `/search?q=` | ✅ Done |
+| `components/ui/CookieConsent.tsx` — Fixed bottom banner, cookie-based, accept/reject | ✅ Done |
+
+#### Forms (complete)
+
+| Component | Status |
+|---|---|
+| `components/forms/ContactForm.tsx` — react-hook-form + Zod, posts to `/api/contact` | ✅ Done |
+
+#### Library / Utilities (all complete)
+
+| File | Status |
+|---|---|
+| `lib/navigation.ts` — Hard-coded `mainNavigation` array (5 top-level items, nested) | ✅ Done |
+| `lib/utils.ts` — `cn()` class-merge utility (clsx) | ✅ Done |
+| `lib/sanity/client.ts` — Sanity client init, CDN in production | ✅ Done |
+| `lib/sanity/image.ts` — `@sanity/image-url` builder | ✅ Done |
+| `lib/sanity/queries.ts` — GROQ: pageBySlug, homePage, faqItems, siteSettings, allPageSlugs | ✅ Done |
+
+#### Types (complete)
+
+| File | Status |
+|---|---|
+| `types/index.ts` — NavItem, PageData, PortableTextBlock, SanityImage, PageSection union, FAQItem, SiteSettings | ✅ Done |
+
+#### Pages & Routes
+
+| Page | Status | Notes |
+|---|---|---|
+| `app/layout.tsx` — Root layout (fonts, header, footer, skip-link, cookie consent) | ✅ Done | |
+| `app/page.tsx` — Home page (hero, about, cards, gallery, social, podcast, CTA) | ✅ Done | Content hard-coded; ready for CMS swap |
+| `app/not-found.tsx` — 404 page | ✅ Done | |
+| `app/faq/page.tsx` — FAQ with 6 accordion items | ✅ Done | Content hard-coded; ready for CMS swap |
+| `app/kontakt-os/page.tsx` — Contact page + ContactForm | ✅ Done | |
+| `app/find-hjaelp/page.tsx` — Help resources (5 orgs) | ✅ Done | |
+| `app/[slug]/page.tsx` — Dynamic CMS page | ⬜ Stub | Returns null → 404; needs Sanity fetch |
+| `app/search/page.tsx` — Search results | ⬜ Stub | Empty results; needs Sanity search query |
+| `app/api/contact/route.ts` — Contact form POST endpoint | 🟡 Partial | Validates with Zod; email sending not wired |
+
+#### Static Assets (`public/images/`)
+
+| Asset | Status |
+|---|---|
+| `espd-logo.svg`, `espd-logo.png`, `espd-logo-icon.svg`, `espd-logo-front.png` | ✅ Present |
+| `apple-touch-icon.png`, `favicon-32.png`, `favicon-192.png` | ✅ Present |
+| `about-1.jpg`, `about-2.jpg` | ✅ Present |
+| `card-cafe.jpg`, `card-workshop.jpg`, `card-demo.jpg` | ✅ Present |
+| `gallery-1.jpg` – `gallery-6.jpg` (6 images) | ✅ Present |
+| `podcast-cover.jpeg` | ✅ Present |
+| `social-instagram.png`, `social-tiktok.png` | ✅ Present |
+| `placeholder-hero.svg`, `placeholder.svg` | ✅ Present |
+
+---
+
+### Phase 1 — Foundation ✅ COMPLETE
+- [x] Initialize Next.js project with TypeScript + Tailwind CSS
+- [x] Set up Sanity.io project and schemas
+- [x] Implement design tokens (colors, typography, spacing) in Tailwind/CSS
+- [x] Build `Header`, `Footer`, `MobileMenu`, `NavDropdown` components
+- [x] Create root layout with fonts, metadata, skip-link
+- [x] Build `ScrollToTop`, `Breadcrumbs`
+
+### Phase 2 — Home Page ✅ COMPLETE
+- [x] Build all home page sections (Hero, About, CardGrid, Social, CTA)
+- [x] Implement image gallery with lightbox
+- [x] Set up social embed components (conditional on cookie consent)
+- [x] Build `CookieConsent` banner
+- [x] Implement `SearchOverlay`
+
+### Phase 3 — Content Pages 🟡 IN PROGRESS
+- [ ] Connect dynamic `[slug]` page to Sanity (fetch + Portable Text rendering)
+- [ ] Implement Portable Text renderer (`@portabletext/react`) for rich content
+- [x] Build `AccordionFAQ` for FAQ page
+- [x] Build `ContactForm` + API route (validation done)
+- [ ] Wire email sending in `/api/contact` (Resend / Nodemailer)
+- [x] Create "Find hjælp" resources page
+- [ ] Populate all CMS content from existing WordPress site
+- [ ] Connect search page to Sanity GROQ full-text search
+- [ ] Create `/api/revalidate` webhook route for on-demand ISR
+
+### Phase 4 — Polish & Launch ⬜ NOT STARTED
+- [ ] SEO: Open Graph tags, JSON-LD (Organization, FAQPage, BreadcrumbList, SearchAction)
+- [ ] Generate `sitemap.xml` and `robots.txt`
 - [ ] Accessibility audit and fixes
 - [ ] Performance optimization (Lighthouse audit)
 - [ ] Responsive testing across devices
-- [ ] GDPR compliance verification
+- [ ] GDPR: verify cookie consent gates analytics & social embeds
+- [ ] Update `README.md` with ESPD-specific documentation
 - [ ] DNS migration and go-live
 - [ ] Post-launch monitoring
 
