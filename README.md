@@ -45,7 +45,6 @@ This project replaces the legacy WordPress/Elementor site with a fast, accessibl
 | CMS | [Sanity.io](https://www.sanity.io/) | next-sanity 12.x |
 | Forms | [react-hook-form](https://react-hook-form.com/) + [Zod](https://zod.dev/) | 7.x / 4.x |
 | Icons | [react-icons](https://react-icons.github.io/react-icons/) (Font Awesome) | 5.x |
-| Hosting | [Vercel](https://vercel.com/) | — |
 
 ---
 
@@ -368,13 +367,13 @@ npm run lint     # Run ESLint
 
 ## Deployment
 
-The site is designed to deploy on **Vercel** with zero configuration:
+The hosting platform has not been decided yet. The Next.js application can be deployed to any provider that supports Node.js (e.g. a VPS, Docker container, or managed hosting).
 
-1. Connect the repository to Vercel
-2. Set the root directory to `web/`
-3. Add environment variables in Vercel's dashboard
-4. Push to `main` → automatic production deploy
-5. Push to a feature branch → automatic preview deploy
+General steps:
+
+1. Build the application with `npm run build` in the `web/` directory
+2. Set the required environment variables on the hosting platform
+3. Start the production server with `npm run start`
 
 For Sanity content updates to appear without a full re-deploy, set up an **ISR revalidation webhook** from Sanity that hits `/api/revalidate` (not yet implemented).
 

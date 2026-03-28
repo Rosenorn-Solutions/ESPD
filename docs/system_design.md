@@ -155,7 +155,7 @@ Google Fonts to load: **Raleway**, **Roboto**, **Roboto Slab**, **Shadows Into L
 | **CMS** | Sanity.io | Real-time editing, Danish-friendly, free tier fits NGO budget |
 | **Forms** | React Hook Form + Zod | Validation, lightweight |
 | **Email** | Resend or Nodemailer via API route | Contact form submission |
-| **Hosting** | Vercel | Zero-config Next.js deployment, generous free tier |
+| **Hosting** | TBD | Hosting platform not yet decided |
 | **Analytics** | Plausible or Umami | GDPR-friendly, no cookie consent needed |
 | **Icons** | Font Awesome 6 (subset) or `react-icons` | Matching existing FA usage |
 | **Image handling** | Next.js `<Image>` + Sanity image pipeline | Optimized, responsive images |
@@ -491,13 +491,13 @@ The original site uses `cookie-law-info` plugin. The clone needs:
 | Environment | URL | Purpose |
 |---|---|---|
 | **Development** | `localhost:3000` | Local development |
-| **Preview** | `preview.espd.vercel.app` | PR previews (automatic via Vercel) |
+| **Preview** | TBD | PR previews (depends on hosting platform) |
 | **Production** | `everydaysexismproject.dk` | Live site |
 
 ### 12.2 CI/CD Pipeline
 
-1. Push to `main` → Vercel auto-deploys to production
-2. Push to feature branch / PR → Vercel deploys preview
+1. Push to `main` → Deploy to production (CI/CD pipeline TBD)
+2. Push to feature branch / PR → Deploy preview (depends on hosting platform)
 3. Sanity content publish → Webhook triggers `/api/revalidate` → ISR refresh
 
 ### 12.3 Environment Variables
@@ -679,7 +679,7 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=everydaysexismproject.dk
 |---|---|---|---|
 | CMS | Sanity.io | Strapi, Contentful, WordPress headless | Free tier, great DX, real-time previews, GROQ is powerful |
 | Styling | Tailwind CSS | CSS Modules, styled-components | Fast development, design token integration, small bundle |
-| Hosting | Vercel | Netlify, AWS | Best Next.js integration, free tier sufficient for NGO |
+| Hosting | TBD | Vercel, Netlify, AWS, VPS | Hosting platform not yet decided |
 | Social embeds | Conditional iframes | API-fetched data | Simplicity, no API key management |
 | Analytics | Plausible/Umami | Google Analytics | GDPR-friendly, no cookie consent needed for basic analytics |
 | i18n | Danish only (hardcoded `da-DK`) | next-intl | Site is Danish-only, no current need for i18n |

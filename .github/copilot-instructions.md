@@ -7,7 +7,7 @@
 
 ## 1. Project Overview
 
-This is a **Next.js 16 (App Router)** website for a Danish NGO. It uses **TypeScript**, **Tailwind CSS v4**, **Sanity.io** as CMS, and deploys to **Vercel**. The site language is **Danish only** (`da-DK`).
+This is a **Next.js 16 (App Router)** website for a Danish NGO. It uses **TypeScript**, **Tailwind CSS v4**, and **Sanity.io** as CMS. The site language is **Danish only** (`da-DK`).
 
 ### Workspace layout
 
