@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.sanity.io",
       },
+      {
+        // TODO: Download pyramid image locally and remove this entry
+        protocol: "https",
+        hostname: "everydaysexismproject.dk",
+      },
     ],
   },
 }
