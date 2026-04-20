@@ -32,7 +32,7 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      <Breadcrumbs items={[{ label: "Kontakt", href: "/kontakt-os" }, { label: "Kontakt os" }]} />
+      <Breadcrumbs items={[{ label: "Kontakt" }, { label: "Kontakt os" }]} />
 
       <section className="bg-white">
         <div className="mx-auto max-w-[800px] px-4 py-12 md:py-16">

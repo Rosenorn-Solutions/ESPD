@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Find hjælp",
+  title: "Hvor kan jeg få hjælp? — Everyday Sexism Project Danmark",
   description:
     "Er du udsat for overgreb eller vold? Her finder du hjælp og ressourcer.",
 };
@@ -57,8 +57,8 @@ export default function FindHjaelpPage() {
 
       <Breadcrumbs
         items={[
-          { label: "Kontakt", href: "/kontakt-os" },
-          { label: "Find hjælp" },
+          { label: "Kontakt" },
+          { label: "Hvor kan jeg få hjælp?" },
         ]}
       />
 
