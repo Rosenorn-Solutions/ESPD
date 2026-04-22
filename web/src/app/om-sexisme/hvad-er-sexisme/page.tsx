@@ -1,5 +1,9 @@
 ﻿import type { Metadata } from "next";
+import Image from "next/image";
+
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+
+import coverPhoto from "./cover-photo-vecteezy.jpg";
 
 export const metadata: Metadata = {
   title: "Hvad er sexisme? — Everyday Sexism Project Danmark",
@@ -11,11 +15,22 @@ export default function HvadErSexismePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-primary-black text-white">
-        <div className="mx-auto max-w-[1200px] px-4 py-16 md:py-24 text-center">
-          <h1 className="font-heading text-2xl md:text-3xl font-bold uppercase">
+      <section className="relative isolate overflow-hidden bg-primary-black text-white">
+        <Image
+          src={coverPhoto}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-primary-black/15" aria-hidden="true" />
+        <div className="relative mx-auto flex min-h-[280px] max-w-[1200px] items-center justify-center px-4 py-16 md:min-h-[360px] md:py-24 text-center">
+          <div className="inline-flex bg-white px-6 py-3 shadow-sm md:px-8 md:py-4">
+            <h1 className="font-heading text-2xl font-bold uppercase text-accent-gold md:text-3xl">
             Hvad er sexisme?
-          </h1>
+            </h1>
+          </div>
         </div>
       </section>
 
