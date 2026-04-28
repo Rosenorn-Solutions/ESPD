@@ -1,12 +1,14 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+
 import { cn } from "@/lib/utils";
 
 interface AccordionItemProps {
   question: string;
-  answer: string;
+  answer: ReactNode;
   defaultOpen?: boolean;
 }
 
@@ -33,11 +35,11 @@ export function AccordionItem({
       </button>
       <div
         className={cn(
-          "overflow-hidden transition-all duration-300",
-          open ? "max-h-[2000px] pb-5" : "max-h-0"
+          "grid overflow-hidden transition-[grid-template-rows,padding] duration-300",
+          open ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"
         )}
       >
-        <div className="font-body text-body-text leading-relaxed whitespace-pre-line">
+        <div className="min-h-0 flex flex-col gap-4 font-body text-body-text leading-relaxed whitespace-pre-line [&>p]:block [&>p]:whitespace-normal">
           {answer}
         </div>
       </div>

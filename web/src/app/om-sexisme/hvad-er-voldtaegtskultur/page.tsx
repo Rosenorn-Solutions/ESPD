@@ -1,5 +1,12 @@
 ﻿import type { Metadata } from "next";
+import Image from "next/image";
+
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+
+import victimBlamingImageUrl from "./alcohol-party-dinner-date-3240-scaled-e1585581050794-1017x1024.jpg";
+import introImageUrl from "./man-sitting-in-front-of-window-3244604-onc3ezau6iq9cc4w30ih77t8a4ugs58oa2ouicvlwg.jpg";
+import scoreCultureImageUrl from "./several-people-at-a-party-1540338.jpg";
+import bannerImageUrl from "./time-lapse-photography-of-people-walking-on-pedestrian-lane-842339.jpg";
 
 export const metadata: Metadata = {
   title: "Hvad er voldtægtskultur? — Everyday Sexism Project Danmark",
@@ -11,11 +18,22 @@ export default function HvadErVoldtaegtskulturPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-primary-black text-white">
-        <div className="mx-auto max-w-[1200px] px-4 py-16 md:py-24 text-center">
-          <h1 className="font-heading text-2xl md:text-3xl font-bold uppercase">
-            Hvad er voldtægtskultur?
-          </h1>
+      <section className="relative isolate overflow-hidden bg-primary-black text-white">
+        <Image
+          src={bannerImageUrl}
+          alt="Mennesker i bevægelse i et byrum"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-primary-black/45" aria-hidden="true" />
+        <div className="relative mx-auto flex min-h-[280px] max-w-[1200px] items-center justify-center px-4 py-16 text-center md:min-h-[360px] md:py-24">
+          <div className="inline-flex bg-white px-6 py-3 shadow-sm md:px-8 md:py-4">
+            <h1 className="font-heading text-2xl font-bold uppercase text-accent-gold md:text-3xl">
+              Hvad er voldtægtskultur?
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -27,120 +45,166 @@ export default function HvadErVoldtaegtskulturPage() {
       />
 
       <section className="bg-white">
-        <div className="mx-auto max-w-[800px] px-4 py-12 md:py-16 font-body text-body-text leading-relaxed space-y-12">
+        <div className="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
 
           {/* ── Intro ──────────────────────────────────────── */}
-          <div className="space-y-4">
-            <div className="flex flex-col gap-2 border-l-4 border-accent-gold pl-4 italic text-dark-text font-semibold">
-              <p>&ldquo;Hun var jo også fuld&nbsp;…&rdquo;</p>
-              <p>&ldquo;Kvinder siger &lsquo;nej&rsquo;, men mener &lsquo;ja&rsquo;&rdquo;</p>
-              <p>&ldquo;Sådan er drenge!&rdquo;</p>
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] md:items-start">
+            <div className="space-y-4 font-body leading-relaxed text-body-text">
+              <div className="flex flex-col gap-2 border-l-4 border-accent-gold pl-4 font-semibold italic text-dark-text">
+                <p>&ldquo;Hun var jo også fuld&nbsp;…&rdquo;</p>
+                <p>&ldquo;Kvinder siger &lsquo;nej&rsquo;, men mener &lsquo;ja&rsquo;&rdquo;</p>
+                <p>&ldquo;Sådan er drenge!&rdquo;</p>
+              </div>
+              <p>
+                Voldtægtskultur. Det er et voldsomt ord, og mange reagerer derfor ved at tænke:
+                &lsquo;Det har vi da ikke i Danmark. Vi har en lovgivning, der straffer dem, der
+                begår voldtægt! Og ingen kan da lide nogen, der voldtager!&rsquo;
+              </p>
+              <p>
+                Men voldtægtskultur udmønter sig i mere end lovgivning. Vi mærker den, hver
+                gang der bliver sat spørgsmålstegn ved sandheden i en voldtægtsanmeldelse. Hver
+                gang vi hører, at et offer kunne have undgået voldtægten, hvis bare der var
+                blevet sagt ordentligt fra, eller slået, sparket, skreget, bidt eller råbt på
+                hjælp. Eller at den anklagede person er jo virkelig rar, så det kan ikke passe.
+              </p>
+              <p>
+                Voldtægtskulturen består af forskellige elementer, som alle er til stede i det
+                danske samfund.
+              </p>
+              <p>
+                I en voldtægtskultur har de samfundsmæssige holdninger til køn og seksualitet
+                normaliseret den almindelige forestilling om, hvad en voldtægt er. Denne
+                forestilling påvirker den måde, vi tænker og taler om voldtægt på, og indebærer
+                victimblaming, slut-shaming, seksuel objektificering og trivialisering af
+                voldtægt. Endvidere medfører det benægtelse af, at voldtægt er et udbredt
+                problem, samt manglende anerkendelse af den skade, som seksualiseret vold
+                påfører offeret.
+              </p>
+              <p>
+                Voldtægtskulturen udmønter sig i fire forskellige elementer, som alle er til
+                stede i det danske samfund, og som bl.a. ses i vores lovgivning og politiets
+                generelle håndtering af voldtægtssager.
+              </p>
             </div>
-            <p>
-              Voldtægtskultur. Det er et voldsomt ord, og mange reagerer derfor ved at tænke:
-              &lsquo;Det har vi da ikke i Danmark. Vi har en lovgivning, der straffer dem, der
-              begår voldtægt! Og ingen kan da lide nogen, der voldtager!&rsquo;
-            </p>
-            <p>
-              Men voldtægtskultur udmønter sig i mere end lovgivning. Vi mærker den, hver gang
-              der bliver sat spørgsmålstegn ved sandheden i en voldtægtsanmeldelse. Hver gang
-              vi hører, at et offer kunne have undgået voldtægten, hvis bare der var blevet
-              sagt ordentligt fra, eller slået, sparket, skreget, bidt eller råbt på hjælp.
-              Eller at den anklagede person er jo virkelig rar, så det kan ikke passe.
-            </p>
-            <p>
-              Voldtægtskulturen består af forskellige elementer, som alle er til stede i det
-              danske samfund.
-            </p>
-            <p>
-              I en voldtægtskultur har de samfundsmæssige holdninger til køn og seksualitet
-              normaliseret den almindelige forestilling om, hvad en voldtægt er. Denne
-              forestilling påvirker den måde, vi tænker og taler om voldtægt på, og indebærer
-              victimblaming, slut-shaming, seksuel objektificering og trivialisering af
-              voldtægt. Endvidere medfører det benægtelse af, at voldtægt er et udbredt
-              problem, samt manglende anerkendelse af den skade, som seksualiseret vold
-              påfører offeret.
-            </p>
-            <p>
-              Voldtægtskulturen udmønter sig i fire forskellige elementer, som alle er til
-              stede i det danske samfund, og som bl.a. ses i vores lovgivning og politiets
-              generelle håndtering af voldtægtssager.
-            </p>
+
+            <div className="space-y-3">
+              <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
+                <Image
+                  src={introImageUrl}
+                  alt="Person sidder alene foran et vindue"
+                  width={1200}
+                  height={800}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           {/* ── #1 Scorekultur ─────────────────────────────── */}
-          <div className="space-y-4">
-            <h2 className="font-heading text-xl md:text-2xl font-semibold uppercase text-dark-text">
-              #1 Scorekultur
-            </h2>
-            <p>
-              Det har i mange år været en almindelig opfattelse i vores kultur, at det er
-              manden, der skal erobre kvinden. En scorekultur indbefatter således idéen om, at
-              kvinden skal være den passive, og at det er manden, der med sin charme og
-              gentleman-opførsel skal score kvinden. Ved at kurtisere hende, kan han overbevise
-              hende om, at han er værd at give efter for, så det ender med, at hun gerne vil
-              have sex med ham.
-            </p>
-            <p>
-              Denne opfattelse kan give nogle mænd en idé om, at når kvinden siger nej, vil
-              det stadig være muligt at score hende, og at hun bare siger &lsquo;nej&rsquo;
-              for at spille kostbar eller blot fortsat skal bearbejdes.
-            </p>
-            <p>
-              Yderligere er det prestigefyldt for drenge og mænd at have mange seksualpartnere,
-              hvor det modsatte er tilfældet for piger og kvinder.
-            </p>
+          <div className="mt-12 grid gap-10 border-t border-light-gray pt-12 md:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] md:items-start">
+            <div className="space-y-4 font-body leading-relaxed text-body-text">
+              <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
+                #1 Scorekultur
+              </h2>
+              <p>
+                Det har i mange år været en almindelig opfattelse i vores kultur, at det er
+                manden, der skal erobre kvinden. En scorekultur indbefatter således idéen om,
+                at kvinden skal være den passive, og at det er manden, der med sin charme og
+                gentleman-opførsel skal score kvinden. Ved at kurtisere hende, kan han
+                overbevise hende om, at han er værd at give efter for, så det ender med, at
+                hun gerne vil have sex med ham.
+              </p>
+              <p>
+                Denne opfattelse kan give nogle mænd en idé om, at når kvinden siger nej, vil
+                det stadig være muligt at score hende, og at hun bare siger &lsquo;nej&rsquo;
+                for at spille kostbar eller blot fortsat skal bearbejdes.
+              </p>
+              <p>
+                Yderligere er det prestigefyldt for drenge og mænd at have mange
+                seksualpartnere, hvor det modsatte er tilfældet for piger og kvinder.
+              </p>
+            </div>
+
+            <figure className="space-y-3">
+              <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
+                <Image
+                  src={scoreCultureImageUrl}
+                  alt="Mennesker til en fest"
+                  width={1920}
+                  height={1280}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+              <figcaption className="font-heading text-xs uppercase tracking-[0.2em] text-body-text">
+                Alle fotos: Pexels
+              </figcaption>
+            </figure>
           </div>
 
           {/* ── #2 Victimblaming ───────────────────────────── */}
-          <div className="space-y-4">
-            <h2 className="font-heading text-xl md:text-2xl font-semibold uppercase text-dark-text">
-              #2 Victimblaming
-            </h2>
-            <p>
-              Det er desværre stadig almindeligt, at ofre for voldtægt og andre seksualiserede
-              overgreb bebrejdes for, at forbrydelsen fandt sted. Ofte skal ofre høre fra
-              omverdenen, at de selv var ude om det, fordi de havde drukket for meget, gik
-              udfordrende klædt, eller jo allerede havde kysset med gerningspersonen. Denne
-              form for victimblaming er så normaliseret i vores samfund, at den også påvirker
-              en institution som politiet. Det kan komme til udtryk, når politiet spørger til
-              offerets påklædning og opførsel op til en voldtægt.
-            </p>
-            <p>
-              Slut-shaming er en anden form for victimblaming, hvor især piger og kvinder
-              kritiseres, fordi de bryder med normen for, hvordan en kvinde &lsquo;bør&rsquo;
-              se ud og opføre sig. Begrebet bruges af både mænd og kvinder, der mener, at
-              kvinder, der går udfordrende klædt og har et seksuelt udtryk, falder uden for,
-              hvad der er socialt accepteret. Er man udsat for en voldtægt, mens man har en
-              kort nederdel på, &lsquo;har man selv bedt om det&rsquo;.
-            </p>
-            <p>
-              En{" "}
-              <a
-                href="https://pure.vive.dk/ws/files/1765711/100739_Unges_opfattelser_af_k_n.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-accent-gold transition-colors"
-              >
-                undersøgelse fra VIVE 2018
-              </a>{" "}
-              viser, at 18-årige piger og drenge er næsten lige seksuelt erfarne. Men hvor de
-              seksuelt erfarne piger med skiftende partnere generelt mødes med fordømmelse,
-              hyldes og beundres drengene for samme handling.
-            </p>
-            <p>
-              Ifølge undersøgelsen varierer denne dobbeltmoral dog fra interview til interview
-              samt mellem forskellige vennegrupper og lokalområder. Mange af de unge tager
-              personligt afstand fra denne dobbeltmoral, mens andre unge accepterer de
-              klassiske forestillinger: Pigerne har seksuelle grænser, som de må værne om, og
-              drengene er erobrere, der opnår anerkendelse for at have været sammen med en ny
-              seksuel partner.
-            </p>
+          <div className="mt-12 grid gap-10 border-t border-light-gray pt-12 md:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] md:items-start">
+            <figure className="order-2 space-y-3 md:order-1">
+              <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
+                <Image
+                  src={victimBlamingImageUrl}
+                  alt="Bord dækket op med alkohol til en fest"
+                  width={1017}
+                  height={1024}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </figure>
+
+            <div className="order-1 space-y-4 font-body leading-relaxed text-body-text md:order-2">
+              <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
+                #2 Victimblaming
+              </h2>
+              <p>
+                Det er desværre stadig almindeligt, at ofre for voldtægt og andre
+                seksualiserede overgreb bebrejdes for, at forbrydelsen fandt sted. Ofte skal
+                ofre høre fra omverdenen, at de selv var ude om det, fordi de havde drukket for
+                meget, gik udfordrende klædt, eller jo allerede havde kysset med
+                gerningspersonen. Denne form for victimblaming er så normaliseret i vores
+                samfund, at den også påvirker en institution som politiet. Det kan komme til
+                udtryk, når politiet spørger til offerets påklædning og opførsel op til en
+                voldtægt.
+              </p>
+              <p>
+                Slut-shaming er en anden form for victimblaming, hvor især piger og kvinder
+                kritiseres, fordi de bryder med normen for, hvordan en kvinde &lsquo;bør&rsquo;
+                se ud og opføre sig. Begrebet bruges af både mænd og kvinder, der mener, at
+                kvinder, der går udfordrende klædt og har et seksuelt udtryk, falder uden for,
+                hvad der er socialt accepteret. Er man udsat for en voldtægt, mens man har en
+                kort nederdel på, &lsquo;har man selv bedt om det&rsquo;.
+              </p>
+              <p>
+                En{" "}
+                <a
+                  href="https://pure.vive.dk/ws/files/1765711/100739_Unges_opfattelser_af_k_n.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline transition-colors hover:text-accent-gold"
+                >
+                  undersøgelse fra VIVE 2018
+                </a>{" "}
+                viser, at 18-årige piger og drenge er næsten lige seksuelt erfarne. Men hvor de
+                seksuelt erfarne piger med skiftende partnere generelt mødes med fordømmelse,
+                hyldes og beundres drengene for samme handling.
+              </p>
+              <p>
+                Ifølge undersøgelsen varierer denne dobbeltmoral dog fra interview til
+                interview samt mellem forskellige vennegrupper og lokalområder. Mange af de
+                unge tager personligt afstand fra denne dobbeltmoral, mens andre unge accepterer
+                de klassiske forestillinger: Pigerne har seksuelle grænser, som de må værne om,
+                og drengene er erobrere, der opnår anerkendelse for at have været sammen med en
+                ny seksuel partner.
+              </p>
+            </div>
           </div>
 
           {/* ── #3 Sexisme og seksuel objektivisering ─────── */}
-          <div className="space-y-4">
-            <h2 className="font-heading text-xl md:text-2xl font-semibold uppercase text-dark-text">
+          <div className="mt-12 space-y-4 border-t border-light-gray pt-12 font-body leading-relaxed text-body-text">
+            <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
               #3 Sexisme og seksuel objektivisering
             </h2>
             <p>
@@ -150,7 +214,7 @@ export default function HvadErVoldtaegtskulturPage() {
               Du kan{" "}
               <a
                 href="/om-sexisme/hvad-er-sexisme"
-                className="underline hover:text-accent-gold transition-colors"
+                className="underline transition-colors hover:text-accent-gold"
               >
                 læse mere om sexisme her
               </a>
@@ -173,13 +237,13 @@ export default function HvadErVoldtaegtskulturPage() {
             </p>
             <p>
               I Danmark kan det være svært at &lsquo;få lov&rsquo; til at sige fra over for
-              sexisme. Siger man fra over for sexisme eller overgreb, sker det ofte, at man
-              får at vide, at man &lsquo;skal slappe lidt af, det er jo bare for
-              sjov&rsquo;. Endvidere kan man blive beskyldt for at være snerpet,
-              krænkelsesparat eller &lsquo;at alt skal være så politisk korrekt&rsquo;. Den
-              måde, som #MeToo-bevægelsen er modtaget i Danmark, er et tydeligt eksempel på,
-              hvordan kvinder, der siger fra over for overgreb, latterliggøres,
-              mistænkeliggøres og nedgøres.
+              sexisme. Siger man fra over for sexisme eller overgreb, sker det ofte, at man får
+              at vide, at man &lsquo;skal slappe lidt af, det er jo bare for sjov&rsquo;.
+              Endvidere kan man blive beskyldt for at være snerpet, krænkelsesparat eller
+              &lsquo;at alt skal være så politisk korrekt&rsquo;. Den måde, som
+              #MeToo-bevægelsen er modtaget i Danmark, er et tydeligt eksempel på, hvordan
+              kvinder, der siger fra over for overgreb, latterliggøres, mistænkeliggøres og
+              nedgøres.
             </p>
             <p>
               Vi oplever bl.a. dette, når folk fortæller voldtægtsjokes, hvor den sexistiske
@@ -188,23 +252,27 @@ export default function HvadErVoldtaegtskulturPage() {
                 href="https://pov.international/voldtaegtsjokes-der-er-overhovedet-ingen-grund-til-at-grine/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-accent-gold transition-colors"
+                className="underline transition-colors hover:text-accent-gold"
               >
                 læse mere om ESPDs syn på voldtægtsjokes her
               </a>
               .
             </p>
+            <blockquote className="border-l-4 border-accent-gold pl-4 font-semibold italic text-dark-text">
+              Voldtægtskultur er ikke noget alle deltager i, men det er noget alle kan sige fra
+              overfor.
+            </blockquote>
           </div>
 
           {/* ── #4 Falske anklager ─────────────────────────── */}
-          <div className="space-y-4">
-            <h2 className="font-heading text-xl md:text-2xl font-semibold uppercase text-dark-text">
+          <div className="mt-12 space-y-4 border-t border-light-gray pt-12 font-body leading-relaxed text-body-text">
+            <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
               #4 Falske anklager
             </h2>
             <p>
               Voldtægtskulturen er også det, der gør, at vi har så mange ofre for
-              seksualiserede overgreb og voldtægt, der ikke anmelder. Det gør de ikke, fordi
-              de enten risikerer at blive mødt med mistro, anklager for at være ude efter
+              seksualiserede overgreb og voldtægt, der ikke anmelder. Det gør de ikke, fordi de
+              enten risikerer at blive mødt med mistro, anklager for at være ude efter
               opmærksomhed (mest kvindelige ofre) eller for at blive latterliggjort (mest
               mandlige ofre). Processen i at anmelde disse sager er så hård, at den af nogle
               ofre opleves som endnu et overgreb. De mister venner, de oplever fremmede, der
@@ -215,16 +283,16 @@ export default function HvadErVoldtaegtskulturPage() {
               I Amnesty Internationals rapport <em>»Giv os respekt og retfærdighed!«</em> fra
               2019, der omhandler retspraksis omkring voldtægt i Danmark, hører vi, hvordan
               kvinder og piger svigtes af en forældet voldtægtslovgivning og mødes af myter og
-              kønsstereotyper, når de anmelder en voldtægt. Når kvinder, der har været udsat
-              for seksuelt overgreb, vil anmelde hændelsen, oplever de somme tider, at politiet
-              har en formodning om, at hændelsen er fiktion, fordi de har fortrudt eller vil
-              have hævn for &lsquo;dårlig sex&rsquo;. Eller de mødes med victimblaming og
+              kønsstereotyper, når de anmelder en voldtægt. Når kvinder, der har været udsat for
+              seksuelt overgreb, vil anmelde hændelsen, oplever de somme tider, at politiet har
+              en formodning om, at hændelsen er fiktion, fordi de har fortrudt eller vil have
+              hævn for &lsquo;dårlig sex&rsquo;. Eller de mødes med victimblaming og
               slut-shaming, eller beskyldes for at søge opmærksomhed.
             </p>
           </div>
 
           {/* ── Læs mere ───────────────────────────────────── */}
-          <div className="space-y-3 border-t border-light-gray pt-8">
+          <div className="mt-12 space-y-3 border-t border-light-gray pt-8 font-body leading-relaxed text-body-text">
             <h2 className="font-heading text-base font-bold uppercase text-dark-text">
               Læs mere her
             </h2>

@@ -82,10 +82,10 @@ export function Header() {
       </nav>
 
       {/* Mobile hamburger */}
-      <div className="nav:hidden flex items-center justify-end px-4 py-3 bg-white">
+      <div className="nav:hidden flex items-center justify-center px-4 py-3 bg-white">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-primary-black hover:text-accent-gold transition-colors p-2"
+          className="inline-flex items-center justify-center gap-2 p-2 text-primary-black transition-colors hover:text-accent-gold"
           aria-label={mobileMenuOpen ? "Luk menu" : "Åbn menu"}
           aria-expanded={mobileMenuOpen}
         >
@@ -94,7 +94,7 @@ export function Header() {
           ) : (
             <FaBars className="w-6 h-6" />
           )}
-          <span className="ml-2 font-heading text-sm uppercase">
+          <span className="font-heading text-sm uppercase">
             {mobileMenuOpen ? "Luk" : "Menu"}
           </span>
         </button>
