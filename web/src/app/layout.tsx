@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway, Roboto, Shadows_Into_Light } from "next/font/google";
+import { Kalam, Raleway, Roboto, Shadows_Into_Light } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -20,6 +20,13 @@ const roboto = Roboto({
 
 const shadowsIntoLight = Shadows_Into_Light({
   variable: "--font-shadows-into-light",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const kalam = Kalam({
+  variable: "--font-kalam",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -61,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="da-DK">
       <body
-        className={`${raleway.variable} ${roboto.variable} ${shadowsIntoLight.variable} antialiased`}
+        className={`${raleway.variable} ${roboto.variable} ${shadowsIntoLight.variable} ${kalam.variable} antialiased`}
       >
         <a href="#main" className="skip-link">
           Gå til indhold

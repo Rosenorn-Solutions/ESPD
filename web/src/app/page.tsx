@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
+
 import Image from "next/image";
-import { HeroSection } from "@/components/sections/HeroSection";
+
 import { ContentSection } from "@/components/sections/ContentSection";
 import { CardGrid } from "@/components/sections/CardGrid";
 import { CTASection } from "@/components/sections/CTASection";
 import { PodcastSection } from "@/components/sections/PodcastSection";
 import { SocialFeedSection } from "@/components/sections/SocialFeedSection";
 import { Divider } from "@/components/ui/Divider";
-import { ImageGallery } from "@/components/ui/ImageGallery";
+
+import armbandsImage from "../../media/armbands.jpg";
+import consentNowImage from "../../media/concentnow.jpg";
+import everydaySexismImage from "../../media/everydaysex.jpeg";
+import resistImage from "../../media/resist.jpg";
+import samlingImage from "../../media/samling.jpg";
+import samtykkelovImage from "../../media/samtykkelov.jpg";
 
 export const metadata: Metadata = {
   title: "Home — Everyday Sexism Project Danmark",
@@ -15,16 +22,13 @@ export const metadata: Metadata = {
     "Vores mission er at skabe en kulturændring, hvor hverdagssexisme er uacceptabel. ESPD er en frivilligdrevet NGO, der bekæmper og oplyser om hverdagssexisme.",
 };
 
-/*
- * Image paths – to be replaced by Sanity CMS content in production.
- */
-const galleryImages = [
-  { src: "/images/gallery-1.jpg", alt: "ESPD aktivitet" },
-  { src: "/images/gallery-2.jpg", alt: "ESPD kampagne – SamtykkelovNU" },
-  { src: "/images/gallery-3.jpg", alt: "ESPD event" },
-  { src: "/images/gallery-4.png", alt: "ESPD frivillige" },
-  { src: "/images/gallery-5.jpg", alt: "ESPD demonstration" },
-  { src: "/images/gallery-6.jpg", alt: "ESPD arrangement" },
+const missionImages = [
+  { src: armbandsImage, alt: "ESPD armbånd" },
+  { src: consentNowImage, alt: "Samtykke nu kampagne" },
+  { src: everydaySexismImage, alt: "Everyday Sexism motiv" },
+  { src: resistImage, alt: "Resist motiv" },
+  { src: samlingImage, alt: "ESPD samling" },
+  { src: samtykkelovImage, alt: "Samtykkelov kampagne" },
 ];
 
 const meetUsCards = [
@@ -76,14 +80,34 @@ export default function HomePage() {
       </section>
 
       {/* ── Mission section with cloud divider ──────────── */}
-      <HeroSection
-        heading="Vores mission er at skabe en kulturændring, hvor hverdagssexisme er uacceptabel"
-        backgroundClass="bg-primary-white text-black"
-      >
-        <div className="w-full max-w-[500px]">
-          <ImageGallery images={galleryImages} />
+      <section className="bg-primary-white text-primary-black">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-4 py-16 md:py-24 lg:flex-row lg:items-center">
+          <div className="lg:w-1/2">
+            <h2 className="font-kamal text-3xl font-semibold leading-tight md:text-4xl lg:text-5xl">
+              Vores mission er at skabe en kulturændring, hvor hverdagssexisme er uacceptabel
+            </h2>
+          </div>
+
+          <div className="lg:w-1/2">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {missionImages.map((image) => (
+                <div
+                  key={image.alt}
+                  className="relative aspect-square overflow-hidden rounded-sm"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </HeroSection>
+      </section>
 
       {/* ── Hvem er ESPD? ───────────────────────────────── */}
       <Divider />

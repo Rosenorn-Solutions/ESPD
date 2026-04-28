@@ -39,11 +39,9 @@ export default function OplaegPage() {
         />
         <div className="absolute inset-0 bg-primary-black/50" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[300px] max-w-[1200px] items-center justify-center px-4 py-16 text-center md:min-h-[380px] md:py-24">
-          <div className="bg-white px-6 py-3 shadow-sm md:px-8 md:py-4">
-            <h1 className="font-heading text-2xl font-bold uppercase text-accent-gold md:text-3xl">
-              Oplæg og arrangementer
-            </h1>
-          </div>
+          <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-white md:text-4xl lg:text-5xl">
+            Oplæg og arrangementer
+          </h1>
         </div>
       </section>
 
