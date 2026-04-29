@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -278,12 +279,12 @@ export default function SamtykkebaseretVoldtaegtslovgivningPage() {
                 mere om samtykkebaseret sex.
               </p>
               <p>
-                <a
+                <Link
                   href="/vores-arbejde/hoeringssvar"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   Læs mere om ESPDs holdning og anbefalinger under Høringssvar
-                </a>
+                </Link>
               </p>
             </div>
 

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -188,12 +189,12 @@ export default function KoensbaseretVoldPage() {
               </ul>
               <p>
                 Er du udsat for vold?{" "}
-                <a
+                <Link
                   href="/kontakt/hvor-kan-jeg-faa-hjaelp"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   Find hjælp her
-                </a>
+                </Link>
                 .
               </p>
             </div>

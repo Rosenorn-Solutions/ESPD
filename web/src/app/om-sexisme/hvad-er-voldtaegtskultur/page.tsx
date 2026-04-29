@@ -1,5 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -210,12 +212,12 @@ export default function HvadErVoldtaegtskulturPage() {
               måde, der fremstiller dem som værende mindre værd end mænd. Her spiller både den
               daglige tale og medierne en rolle for, hvordan vi som samfund opfatter kvinder.
               Du kan{" "}
-              <a
+              <Link
                 href="/om-sexisme/hvad-er-sexisme"
                 className="underline transition-colors hover:text-accent-gold"
               >
                 læse mere om sexisme her
-              </a>
+              </Link>
               .
             </p>
             <p>

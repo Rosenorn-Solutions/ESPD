@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -70,12 +71,12 @@ export default function OplaegPage() {
             <p>
               Har du et arrangement, hvor det vil være relevant med et indslag fra Everyday
               Sexism Project Danmark?{" "}
-              <a
+              <Link
                 href="/kontakt/kontakt-os"
                 className="underline transition-colors hover:text-accent-gold"
               >
                 Kontakt os
-              </a>{" "}
+              </Link>{" "}
               — så finder vi ud af mulighederne for samarbejde.
             </p>
           </div>
@@ -96,12 +97,12 @@ export default function OplaegPage() {
               <p>
                 Hvis du, din organisation, arbejdsplads eller skole er interesseret i at få os
                 ud, så{" "}
-                <a
+                <Link
                   href="/kontakt/kontakt-os"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   skriv til os
-                </a>
+                </Link>
                 , så kan vi finde ud af, hvad der passer til jer.
               </p>
             </div>
@@ -156,12 +157,12 @@ export default function OplaegPage() {
               <p>
                 I januar/februar 2022 flyttede udstillingen ind i Sex og Samfunds lokaler i
                 København. Står du med et ledigt lokale til vores udstilling, så{" "}
-                <a
+                <Link
                   href="/kontakt/kontakt-os"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   kontakt os endelig
-                </a>
+                </Link>
                 .
               </p>
             </div>

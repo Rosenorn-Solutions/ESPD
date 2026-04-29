@@ -1,5 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -138,12 +140,12 @@ export default function FlirteworkshopPage() {
               </p>
 
               <p>
-                <a
+                <Link
                   href="/kontakt/kontakt-os"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   Kontakt os
-                </a>
+                </Link>
                 , hvis du afholder et arrangement, hvor flirteworkshoppen vil være oplagt.
               </p>
 

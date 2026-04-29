@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
@@ -291,12 +292,12 @@ export default function HvadErSexismePage() {
                 et overgreb placeres hos gerningspersonen.
               </p>
               <p>
-                <a
+                <Link
                   href="/vores-arbejde/maerkesager/samtykkebaseret-voldtaegtslovgivning"
                   className="underline transition-colors hover:text-accent-gold"
                 >
                   Læs mere om samtykke og voldtægt her
-                </a>
+                </Link>
                 .
               </p>
             </div>

@@ -1,4 +1,6 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
+
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
@@ -86,12 +88,12 @@ export default function RetningslinjerTilMedierPage() {
           {/* ── Kontakt ────────────────────────────────────── */}
           <p>
             Har du spørgsmål?{" "}
-            <a
+            <Link
               href="/kontakt/kontakt-os"
               className="underline hover:text-accent-gold transition-colors"
             >
               Kontakt os
-            </a>
+            </Link>
             .
           </p>
 

@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AccordionItem } from "@/components/ui/AccordionItem";
@@ -439,12 +440,12 @@ export default function HoeringssvarsPage() {
           <div className="space-y-4">
             <p>
               Ønsker du adgang til et af ovenstående dokumenter, er du velkommen til at{" "}
-              <a
+              <Link
                 href="/kontakt/kontakt-os"
                 className="underline hover:text-accent-gold transition-colors"
               >
                 kontakte os
-              </a>{" "}
+              </Link>{" "}
               på{" "}
               <a
                 href="mailto:espdanmark@gmail.com"
