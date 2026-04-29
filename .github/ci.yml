@@ -1,0 +1,117 @@
+﻿name: ESPD Web CI/CD
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'web/**'
+      - '.github/ci.yml'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'web/**'
+      - '.github/ci.yml'
+
+concurrency:
+  group: espd-web-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 24.x
+  ARTIFACT_NAME: espd-web-build
+  ARCHIVE_NAME: espd-web.tar.gz
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build web app
+        run: npm run build
+
+      - name: Create deployment bundle
+        run: tar -czf ../${{ env.ARCHIVE_NAME }} .next public package.json package-lock.json next.config.ts
+
+      - name: Upload web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARCHIVE_NAME }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Download web artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: .
+
+      - name: Deploy web bundle via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.SERVER_NAME }}
+          username: ${{ vars.SERVER_USER }}
+          key: ${{ secrets.SERVER_ROOT_CERTIFICATE }}
+          passphrase: ${{ secrets.SERVER_ROOT_CERTIFICATE_PASSWORD }}
+          source: ./${{ env.ARCHIVE_NAME }}
+          target: ${{ vars.DEPLOY_TMP_DIR }}
+
+      - name: Activate release on server
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DEPLOY_ROOT: ${{ vars.DEPLOY_ROOT }}
+          DEPLOY_TMP_DIR: ${{ vars.DEPLOY_TMP_DIR }}
+          DEPLOY_OWNER: ${{ vars.DEPLOY_OWNER }}
+          ARCHIVE_NAME: ${{ env.ARCHIVE_NAME }}
+        with:
+          host: ${{ vars.SERVER_NAME }}
+          username: ${{ vars.SERVER_USER }}
+          key: ${{ secrets.SERVER_ROOT_CERTIFICATE }}
+          passphrase: ${{ secrets.SERVER_ROOT_CERTIFICATE_PASSWORD }}
+          envs: DEPLOY_ROOT,DEPLOY_TMP_DIR,DEPLOY_OWNER,ARCHIVE_NAME
+          script: |
+            set -e
+            RELEASES_DIR="$DEPLOY_ROOT/releases"
+            CURRENT_LINK="$DEPLOY_ROOT/current"
+            TIMESTAMP=$(date +%Y%m%d%H%M%S)
+            NEW_RELEASE="$RELEASES_DIR/$TIMESTAMP"
+
+            mkdir -p "$DEPLOY_TMP_DIR" "$RELEASES_DIR" "$NEW_RELEASE"
+            tar -xzf "$DEPLOY_TMP_DIR/$ARCHIVE_NAME" -C "$NEW_RELEASE"
+            rm -f "$DEPLOY_TMP_DIR/$ARCHIVE_NAME"
+
+            if [ -e "$CURRENT_LINK" ] || [ -L "$CURRENT_LINK" ]; then
+              rm -rf "$CURRENT_LINK"
+            fi
+
+            ln -s "$NEW_RELEASE" "$CURRENT_LINK"
+
+            if [ -n "$DEPLOY_OWNER" ]; then
+              sudo chown -R "$DEPLOY_OWNER" "$DEPLOY_ROOT"
+            fi
+
+            if command -v sudo >/dev/null 2>&1; then
+              sudo systemctl reload nginx || true
+            fi
