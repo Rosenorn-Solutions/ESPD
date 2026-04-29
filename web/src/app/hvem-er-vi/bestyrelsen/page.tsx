@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Mød bestyrelsen bag Everyday Sexism Project Danmark.",
 };
 
+// Bestyrelsen mangler - billeder, navn, beskrivelse osv. 
+
 export default function BestyrelsenPage() {
   return (
     <>
