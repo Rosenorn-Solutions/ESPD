@@ -118,13 +118,16 @@ export default function RoskildeFestivalPage() {
               </blockquote>
               <ul className="list-disc space-y-2 pl-6">
               <li>
+                <a href="https://cms.roskildefestivalgruppen.dk/media/dfabhdzw/orange-together_rf25_web.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">Orange Together rapport 2025 (web)</a>
+              </li>  
+              <li>
                 <a href="https://www.roskilde-festival.dk/media/1513/rf_orangetogether_rapport.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">Orange Together rapport 2018 (PDF)</a>
               </li>
               <li>
-                <a href="https://www.roskilde-festival.dk/media/2926/rf_orangetogether_rapport_2019_web.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">Orange Together rapport 2019 (PDF)</a>
+                <a href="https://cms.roskildefestivalgruppen.dk/media/mdseq4zl/rf_orangetogether_rapport_2019_web.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">Orange Together rapport 2019 (PDF)</a>
               </li>
               <li>
-                <a href="https://www.sdu.dk/da/om_sdu/institutter_centre/i_miljo_og_erhvervsoekonomi/nyhedime/ny+forskning+undersoeger+tryghed+og+graenseoverskridende+adfaerd+paa+roskilde+festival" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">SDU-undersøgelse om tryghed og grænseoverskridende adfærd</a>
+                <a href="https://www.sdu.dk/da/om-sdu/institutter-centre/institut-erhverv-baeredygtighed/tidligere-nyheder/nyhedime/ny-forskning-undersoeger-tryghed-og-graenseoverskridende-adfaerd-paa-roskilde-festival" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">SDU-undersøgelse om tryghed og grænseoverskridende adfærd</a>
               </li>
               <li>
                 <a href="https://www.facebook.com/SexismeRF19/" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent-gold transition-colors">SexismeRF19 på Facebook</a>

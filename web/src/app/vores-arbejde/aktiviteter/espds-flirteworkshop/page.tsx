@@ -18,7 +18,7 @@ export default function FlirteworkshopPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-primary-black text-white">
+      <section className="relative isolate overflow-hidden bg-primary-white text-black">
         <Image
           src={heroImage}
           alt="Deltagere til ESPDs flirteworkshop"
@@ -27,11 +27,26 @@ export default function FlirteworkshopPage() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-primary-black/50" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[280px] max-w-[1200px] items-center justify-center px-4 py-16 text-center md:min-h-[360px] md:py-24">
-          <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-white md:text-4xl lg:text-5xl">
-            ESPDs Flirteworkshop
-          </h1>
+        <div className="absolute inset-0 bg-primary-white/50" aria-hidden="true" />
+        <div className="relative mx-auto flex min-h-[420px] max-w-[1200px] flex-col items-center justify-center px-4 py-16 text-center md:min-h-[560px] md:py-24">
+          <div className="max-w-[780px] rounded-sm border border-white/20 bg-white/45 px-6 py-6 backdrop-blur-sm md:px-8 md:py-8">
+            <div className="space-y-4 font-body leading-relaxed text-black">
+              <h1 className="font-heading text-4xl font-bold uppercase leading-tight text-black md:text-5xl">
+                ESPDs Flirteworkshop
+              </h1>
+
+              <p>
+                Er du stødt på påstande om, at man ikke kan flirte mere efter #MeToo? Har du
+                hørt nogen sige, at &lsquo;man ikke må noget mere&rsquo;, når det kommer til
+                flirteri?
+              </p>
+
+              <p>
+                Så er der hjælp at hente i ESPDs flirteworkshop. Er du nysgerrig på, hvad
+                konceptet indeholder, så læs med her.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -48,17 +63,6 @@ export default function FlirteworkshopPage() {
 
           <div className="grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] md:items-start">
             <div className="space-y-6 font-body leading-relaxed text-body-text">
-              <p>
-                Er du stødt på påstande om, at man ikke kan flirte mere efter #MeToo? Har du
-                hørt nogen sige, at &lsquo;man ikke må noget mere&rsquo;, når det kommer til
-                flirteri?
-              </p>
-
-              <p>
-                Så er der hjælp at hente i ESPDs flirteworkshop. Er du nysgerrig på, hvad
-                konceptet indeholder, så læs med her.
-              </p>
-
               <p>
                 Vores flirteworkshop er et koncept, vi selv har udviklet, hvor formålet er at
                 skabe dialog om, hvad der udgør en god flirt og hvad der udgør en ikke-så-god

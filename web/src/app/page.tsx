@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ContentSection } from "@/components/sections/ContentSection";
 import { CardGrid } from "@/components/sections/CardGrid";
 import { CTASection } from "@/components/sections/CTASection";
-import { PodcastSection } from "@/components/sections/PodcastSection";
 import { SocialFeedSection } from "@/components/sections/SocialFeedSection";
 import { Divider } from "@/components/ui/Divider";
 
@@ -61,12 +60,12 @@ export default function HomePage() {
       {/* ── Welcome heading ─────────────────────────────── */}
       <section className="bg-white">
         <div className="px-4 py-10">
-          <div className="flex items-center justify-center gap-0 whitespace-nowrap">
-            <h1 className="font-heading text-4xl md:text-5xl font-bold">
+          <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-3 text-center">
+            <h1 className="font-heading text-[clamp(2rem,5vw,4.5rem)] font-bold leading-tight">
               <span className="text-dark-text">Velkommen til Everyday Sexism Project </span>
               <span className="text-accent-gold">Danmark</span>
             </h1>
-            <div className="w-[120px] shrink-0 mb-4 self-start mt-auto">
+            <div className="w-[clamp(70px,10vw,120px)] shrink-0">
               <Image
                 src="/images/espd-logo-front.png"
                 alt="ESPD logo"
@@ -157,12 +156,8 @@ export default function HomePage() {
       <SocialFeedSection
         heading="Følg os her"
         description="I det daglige arbejder vi primært med vidensdeling fra vores facebookside og andre sociale medier. Vi viser eksempler på alt, fra stereotype fremstillinger af kvinder i medier og reklamer, til faglig marginalisering på studiet og jobbet, og til overgreb og partnervold."
-      />
-
-      {/* ── Podcast ─────────────────────────────────────── */}
-      <PodcastSection
-        imageSrc="/images/podcast-cover.jpeg"
         podcastLink="https://anchor.fm/espd"
+        podcastImageSrc="/images/podcast-cover.jpeg"
       />
 
       {/* ── CTA: Tell your story ────────────────────────── */}

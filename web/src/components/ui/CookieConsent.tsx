@@ -1,29 +1,43 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+
+import Link from "next/link";
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener("cookie-consent-change", onStoreChange);
+
+  return () => {
+    window.removeEventListener("cookie-consent-change", onStoreChange);
+  };
+}
+
+function getSnapshot() {
+  const consent = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("cookie_consent="));
+
+  return consent ?? null;
+}
+
+function getServerSnapshot() {
+  return null;
+}
 
 export function CookieConsent() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const consent = document.cookie
-      .split("; ")
-      .find((c) => c.startsWith("cookie_consent="));
-    if (!consent) {
-      setVisible(true);
-    }
-  }, []);
+  const consent = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const visible = consent === null;
 
   function accept() {
     document.cookie =
       "cookie_consent=accepted; path=/; max-age=31536000; SameSite=Lax";
-    setVisible(false);
+    window.dispatchEvent(new Event("cookie-consent-change"));
   }
 
   function reject() {
     document.cookie =
       "cookie_consent=rejected; path=/; max-age=31536000; SameSite=Lax";
-    setVisible(false);
+    window.dispatchEvent(new Event("cookie-consent-change"));
   }
 
   if (!visible) return null;
@@ -38,9 +52,9 @@ export function CookieConsent() {
         <p className="flex-1 text-sm text-dark-text font-body">
           Vi bruger cookies til at forbedre din oplevelse på vores hjemmeside. Ved
           at klikke &quot;Acceptér&quot; samtykker du til brugen af cookies.{" "}
-          <a href="/privatlivspolitik" className="underline hover:text-accent-gold">
+          <Link href="/privatlivspolitik" className="underline hover:text-accent-gold">
             Læs mere
-          </a>
+          </Link>
         </p>
         <div className="flex gap-3 shrink-0">
           <button

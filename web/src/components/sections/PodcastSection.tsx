@@ -1,5 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 interface PodcastSectionProps {
   heading?: string;
@@ -9,6 +14,16 @@ interface PodcastSectionProps {
   linkText?: string;
 }
 
+function hasAcceptedCookieConsent() {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  return document.cookie
+    .split("; ")
+    .some((cookie) => cookie === "cookie_consent=accepted");
+}
+
 export function PodcastSection({
   heading = "ESPD Podcast",
   imageSrc,
@@ -16,6 +31,21 @@ export function PodcastSection({
   podcastLink,
   linkText = "Klik her for at åbne podcast",
 }: PodcastSectionProps) {
+  const [hasConsent, setHasConsent] = useState(false);
+
+  useEffect(() => {
+    function updateConsent() {
+      setHasConsent(hasAcceptedCookieConsent());
+    }
+
+    updateConsent();
+    window.addEventListener("cookie-consent-change", updateConsent);
+
+    return () => {
+      window.removeEventListener("cookie-consent-change", updateConsent);
+    };
+  }, []);
+
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
@@ -51,15 +81,43 @@ export function PodcastSection({
           </div>
 
           <div className="flex-1">
-            {/* Placeholder for TikTok or social embed */}
-            <div className="rounded-sm bg-gray-50 p-8 text-center text-sm text-body-text">
-              <p className="font-heading uppercase tracking-wide">
-                Social medie indhold
-              </p>
-              <p className="mt-2 text-xs">
-                TikTok / Instagram embed vises her efter cookie-samtykke
-              </p>
-            </div>
+            {hasConsent ? (
+              <div className="rounded-sm bg-gray-50 p-4 text-center text-sm text-body-text">
+                <p className="mb-4 font-heading uppercase tracking-wide text-dark-text">
+                  Social medie indhold
+                </p>
+                <blockquote
+                  className="tiktok-embed mx-auto"
+                  cite="https://www.tiktok.com/@espdanmark"
+                  data-unique-id="espdanmark"
+                  data-embed-type="creator"
+                  style={{ maxWidth: "780px", minWidth: "288px" }}
+                >
+                  <section>
+                    <a
+                      href="https://www.tiktok.com/@espdanmark?refer=creator_embed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      @espdanmark
+                    </a>
+                  </section>
+                </blockquote>
+                <Script
+                  src="https://www.tiktok.com/embed.js"
+                  strategy="lazyOnload"
+                />
+              </div>
+            ) : (
+              <div className="rounded-sm bg-gray-50 p-8 text-center text-sm text-body-text">
+                <p className="font-heading uppercase tracking-wide">
+                  Social medie indhold
+                </p>
+                <p className="mt-2 text-xs">
+                  TikTok / Instagram embed vises her efter cookie-samtykke
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

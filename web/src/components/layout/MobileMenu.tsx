@@ -1,25 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { mainNavigation } from "@/lib/navigation";
 import type { NavItem } from "@/types";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaTimes } from "react-icons/fa";
 
 interface MobileMenuProps {
   onClose: () => void;
 }
 
 export function MobileMenu({ onClose }: MobileMenuProps) {
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
     <div
-      className="nav:hidden fixed inset-0 z-50 bg-white overflow-y-auto"
+      className="nav:hidden fixed inset-0 z-50 overflow-y-auto bg-black/85 text-white backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-label="Mobilmenu"
     >
-      <div className="px-6 py-4">
-        <ul className="space-y-1">
+      <div className="relative flex min-h-screen items-center justify-center px-6 py-12">
+        <button
+          onClick={onClose}
+          className="absolute right-6 top-6 inline-flex items-center gap-2 text-sm font-heading uppercase tracking-wide text-white transition-colors hover:text-accent-gold"
+          aria-label="Luk menu"
+        >
+          <FaTimes className="h-5 w-5" />
+          Luk
+        </button>
+
+        <ul className="w-full max-w-[720px] space-y-3 text-center">
           {mainNavigation.map((item) => (
             <MobileNavItem key={item.title} item={item} onClose={onClose} />
           ))}
@@ -45,8 +68,8 @@ function MobileNavItem({
       <li>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex w-full items-center justify-between py-3 font-heading text-sm font-medium uppercase tracking-wide text-primary-black hover:text-accent-gold transition-colors"
-          style={{ paddingLeft: `${depth * 16}px` }}
+          className="flex w-full items-center justify-center gap-3 py-3 font-heading text-base font-medium uppercase tracking-wide text-white transition-colors hover:text-accent-gold"
+          style={{ marginLeft: `${depth * 16}px` }}
           aria-expanded={expanded}
         >
           {item.title}
@@ -77,8 +100,8 @@ function MobileNavItem({
       <Link
         href={item.href ?? "#"}
         onClick={onClose}
-        className="block py-3 font-heading text-sm font-medium uppercase tracking-wide text-primary-black hover:text-accent-gold transition-colors"
-        style={{ paddingLeft: `${depth * 16}px` }}
+        className="block py-3 font-heading text-base font-medium uppercase tracking-wide text-white transition-colors hover:text-accent-gold"
+        style={{ marginLeft: `${depth * 16}px` }}
       >
         {item.title}
       </Link>

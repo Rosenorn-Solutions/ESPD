@@ -9,16 +9,24 @@ export const metadata: Metadata = {
     "Læs om Everyday Sexism Project Danmarks formål, mission og baggrund.",
 };
 
+// Standalone interview video shown at the bottom of the page.
+const youtubeEmbedUrl = "https://www.youtube.com/embed/oGDzK_T5n7Y";
+
+// Inline history video paired with the opening background text.
+const historyVideoEmbedUrl = "https://www.youtube.com/embed/LhjsRjC6B8U";
+
+// Hero banner image from the legacy site.
 const bannerImageUrl =
   "https://everydaysexismproject.dk/wp-content/uploads/2019/06/Sk%C3%A6rmbillede-2019-06-12-kl.-14.20.18-e1560342075308.png";
 
+// Supporting image used in the history section.
 const historyImageUrl =
   "https://everydaysexismproject.dk/wp-content/uploads/2019/03/IMG_2472-e1554049740231.jpg";
 
 export default function OmEspdPage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero banner with background image and page title. */}
       <section className="relative isolate overflow-hidden bg-primary-black text-white">
         <Image
           src={bannerImageUrl}
@@ -36,6 +44,7 @@ export default function OmEspdPage() {
         </div>
       </section>
 
+      {/* Breadcrumb trail keeps the page positioned inside the Hvem er vi? section. */}
       <Breadcrumbs
         items={[
           { label: "Hvem er vi?" },
@@ -43,68 +52,92 @@ export default function OmEspdPage() {
         ]}
       />
 
-      {/* ── Baggrund og historie ──────────────────────────── */}
+      {/* Background and history are split into two rows: intro text + video, then later history + image. */}
       <section className="bg-white">
-        <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 md:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.9fr)] md:items-start md:py-16">
-          <div className="space-y-6 font-body leading-relaxed text-body-text">
-            <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
-              Baggrund og historie
-            </h2>
+        <div className="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
+          {/* Opening history copy paired with a documentary/interview clip. */}
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.9fr)] md:items-start">
+            <div className="space-y-6 font-body leading-relaxed text-body-text">
+              <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
+                Baggrund og historie
+              </h2>
 
-            <p>
-              The Everyday Sexism Project blev startet af Laura Bates i april 2012, efter at hun
-              gentagne gange på en uge havde været udsat for uønskede seksuelle kommentarer,
-              tilråb og befamlinger. I stedet for at tie om det, som hun plejede og fortsat
-              acceptere det som et vilkår for hverdagen som kvinde, begyndte hun at tale om sine
-              oplevelser.
-            </p>
+              <p>
+                The Everyday Sexism Project blev startet af Laura Bates i april 2012, efter at hun
+                gentagne gange på en uge havde været udsat for uønskede seksuelle kommentarer,
+                tilråb og befamlinger. I stedet for at tie om det, som hun plejede og fortsat
+                acceptere det som et vilkår for hverdagen som kvinde, begyndte hun at tale om sine
+                oplevelser.
+              </p>
 
-            <p>
-              Da Bates først begyndte at fortælle om sine oplevelser med hverdagssexisme,
-              opdagede hun, at der var overvældende mange andre kvinder, der havde mange lignende
-              oplevelser. Hun oprettede derfor et website — The Everyday Sexism Project — et
-              åbent forum for alle, der har lyst til at dele deres oplevelser.
-            </p>
+              <p>
+                Da Bates først begyndte at fortælle om sine oplevelser med hverdagssexisme,
+                opdagede hun, at der var overvældende mange andre kvinder, der havde mange lignende
+                oplevelser. Hun oprettede derfor et website — The Everyday Sexism Project — et
+                åbent forum for alle, der har lyst til at dele deres oplevelser.
+              </p>
+            </div>
 
-            <p>
-              Everyday Sexism Project Danmark (ESPD) er en selvstændig afdeling af det engelske
-              projekt. ESPD blev stiftet i august 2013 af projektleder og journalist Irene
-              Manteufel, i samarbejde med Dansk Kvindesamfund.
-            </p>
-
-            <p>
-              Den danske afdeling fik sit eget website til indsamling af kvinders oplevelser af
-              hverdagssexisme, som fra starten har været projektets kerne. Projektet blev en stor
-              succes og en afgørende del af den nye opblomstring af feminisme og aktivisme i
-              Danmark. Derfor blev projektet i september 2014 tildelt Suzanne Gieses Mindelegat,
-              for at have &ldquo;skabt et totalt kursskifte i den offentlige samtale, når det
-              gælder sexisme&rdquo;.
-            </p>
-
-            <p>
-              I november 2014 blev Everyday Sexism Project Danmark delt i to selvstændige
-              enheder, og ESPD blev et selvstændigt projekt — og i foråret 2015 etableret som
-              forening.
-            </p>
+            {/* Responsive video embed placed to the right of the introductory text on desktop. */}
+            <div className="overflow-hidden rounded-sm bg-primary-black shadow-sm">
+              <div className="aspect-video w-full">
+                <iframe
+                  src={historyVideoEmbedUrl}
+                  title="Video om The Everyday Sexism Project"
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
 
-          <div className="md:sticky md:top-6">
-            <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
-              <Image
-                src={historyImageUrl}
-                alt="Aktivister fra ESPD til et arrangement"
-                width={510}
-                height={535}
-                className="h-auto w-full object-cover"
-              />
+          {/* Follow-up history paragraphs continue on the left, with the archival image on the right. */}
+          <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.9fr)] md:items-start">
+            <div className="space-y-6 font-body leading-relaxed text-body-text">
+              <p>
+                Everyday Sexism Project Danmark (ESPD) er en selvstændig afdeling af det engelske
+                projekt. ESPD blev stiftet i august 2013 af projektleder og journalist Irene
+                Manteufel, i samarbejde med Dansk Kvindesamfund.
+              </p>
+
+              <p>
+                Den danske afdeling fik sit eget website til indsamling af kvinders oplevelser af
+                hverdagssexisme, som fra starten har været projektets kerne. Projektet blev en stor
+                succes og en afgørende del af den nye opblomstring af feminisme og aktivisme i
+                Danmark. Derfor blev projektet i september 2014 tildelt Suzanne Gieses Mindelegat,
+                for at have &ldquo;skabt et totalt kursskifte i den offentlige samtale, når det
+                gælder sexisme&rdquo;.
+              </p>
+
+              <p>
+                I november 2014 blev Everyday Sexism Project Danmark delt i to selvstændige
+                enheder, og ESPD blev et selvstændigt projekt — og i foråret 2015 etableret som
+                forening.
+              </p>
+            </div>
+
+            {/* Supporting image stays visually anchored while the text column scrolls past it. */}
+            <div className="md:sticky md:top-6">
+              <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
+                <Image
+                  src={historyImageUrl}
+                  alt="Aktivister fra ESPD til et arrangement"
+                  width={510}
+                  height={535}
+                  className="h-auto w-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── ESPD i dag ────────────────────────────────────── */}
+      {/* Present-day mission and activities, with a supporting campaign image. */}
       <section className="bg-white border-t border-light-gray">
         <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 md:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.25fr)] md:items-start md:py-16">
+          {/* On desktop the text sits on the right to alternate the visual rhythm from the previous section. */}
           <div className="order-2 space-y-6 font-body leading-relaxed text-body-text md:order-2">
             <h2 className="font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
               ESPD i dag
@@ -154,6 +187,7 @@ export default function OmEspdPage() {
             </p>
           </div>
 
+          {/* Supporting editorial image for the current-work section. */}
           <div className="order-1 md:order-1 md:sticky md:top-6">
             <div className="overflow-hidden rounded-sm bg-light-gray/20 shadow-sm">
               <Image
@@ -162,6 +196,29 @@ export default function OmEspdPage() {
                 width={450}
                 height={600}
                 className="h-auto w-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Standalone featured interview video centered below the page content. */}
+      <section className="border-t border-light-gray bg-white">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-center px-4 py-12 text-center md:py-16">
+          <h2 className="max-w-[900px] font-heading text-xl font-semibold uppercase text-dark-text md:text-2xl">
+            ZEN FRA ESPDs bestyrelse, fortæller i tvtonic om det danske projekt, og OM hverdagssexisme
+          </h2>
+
+          {/* Centered responsive video container with a dark frame for contrast. */}
+          <div className="mt-8 w-full max-w-[900px] overflow-hidden rounded-sm bg-primary-black shadow-sm">
+            <div className="aspect-video w-full">
+              <iframe
+                src={youtubeEmbedUrl}
+                title="ZEN FRA ESPDs bestyrelse, fortæller i tvtonic om det danske projekt, og OM hverdagssexisme"
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
               />
             </div>
           </div>
