@@ -367,15 +367,18 @@ npm run lint     # Run ESLint
 
 ## Deployment
 
-The hosting platform has not been decided yet. The Next.js application can be deployed to any provider that supports Node.js (e.g. a VPS, Docker container, or managed hosting).
+This repository now includes an Ubuntu VPS deployment target for the Next.js app, using **systemd** for the Node.js process and **Nginx** as the reverse proxy.
 
-General steps:
+The CI workflow in `.github/workflows/ci.yml` builds the app, uploads a release archive, extracts it into `/var/www/edsp/frontend/releases/<timestamp>`, updates `/var/www/edsp/frontend/current`, installs the server dependencies, and restarts `espd-web.service`.
 
-1. Build the application with `npm run build` in the `web/` directory
-2. Set the required environment variables on the hosting platform
-3. Start the production server with `npm run start`
+Deployment assets:
 
-For Sanity content updates to appear without a full re-deploy, set up an **ISR revalidation webhook** from Sanity that hits `/api/revalidate` (not yet implemented).
+- `deploy/systemd/espd-web.service`
+- `deploy/systemd/espd-web.env.example`
+- `deploy/nginx/edsp.dk.conf`
+- `docs/ubuntu-deployment.md`
+
+For Sanity content updates to appear without a full re-deploy, set up an **ISR revalidation webhook** from Sanity that hits `/api/revalidate` once that route is implemented.
 
 ---
 

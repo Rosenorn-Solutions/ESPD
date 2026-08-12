@@ -1,0 +1,26 @@
+[Unit]
+Description=ESPD Next.js web application
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=espd
+Group=espd
+EnvironmentFile=/etc/espd/web.env
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+WorkingDirectory=/var/www/edsp/frontend/current
+ExecStartPre=/usr/bin/test -d /var/www/edsp/frontend/current/.next
+ExecStartPre=/usr/bin/test -f /var/www/edsp/frontend/current/package.json
+ExecStartPre=/usr/bin/test -f /var/www/edsp/frontend/current/node_modules/next/dist/bin/next
+ExecStart=/usr/bin/node /var/www/edsp/frontend/current/node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3000 --keepAliveTimeout 70000
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+KillSignal=SIGINT
+SyslogIdentifier=espd-web
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -5,12 +5,12 @@ on:
     branches: ['main']
     paths:
       - 'web/**'
-      - '.github/ci.yml'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: ['main']
     paths:
       - 'web/**'
-      - '.github/ci.yml'
+      - '.github/workflows/ci.yml'
 
 concurrency:
   group: espd-web-${{ github.ref }}
@@ -20,6 +20,8 @@ env:
   NODE_VERSION: 24.x
   ARTIFACT_NAME: espd-web-build
   ARCHIVE_NAME: espd-web.tar.gz
+  SYSTEMD_SERVICE: espd-web.service
+  DEPLOY_OWNER: espd:espd
 
 jobs:
   build:
@@ -83,14 +85,15 @@ jobs:
         env:
           DEPLOY_ROOT: ${{ vars.DEPLOY_ROOT }}
           DEPLOY_TMP_DIR: ${{ vars.DEPLOY_TMP_DIR }}
-          DEPLOY_OWNER: ${{ vars.DEPLOY_OWNER }}
+          DEPLOY_OWNER: ${{ env.DEPLOY_OWNER }}
           ARCHIVE_NAME: ${{ env.ARCHIVE_NAME }}
+          SYSTEMD_SERVICE: ${{ env.SYSTEMD_SERVICE }}
         with:
           host: ${{ vars.SERVER_NAME }}
           username: ${{ vars.SERVER_USER }}
           key: ${{ secrets.SERVER_ROOT_CERTIFICATE }}
           passphrase: ${{ secrets.SERVER_ROOT_CERTIFICATE_PASSWORD }}
-          envs: DEPLOY_ROOT,DEPLOY_TMP_DIR,DEPLOY_OWNER,ARCHIVE_NAME
+          envs: DEPLOY_ROOT,DEPLOY_TMP_DIR,DEPLOY_OWNER,ARCHIVE_NAME,SYSTEMD_SERVICE
           script: |
             set -e
             RELEASES_DIR="$DEPLOY_ROOT/releases"
@@ -101,6 +104,10 @@ jobs:
             mkdir -p "$DEPLOY_TMP_DIR" "$RELEASES_DIR" "$NEW_RELEASE"
             tar -xzf "$DEPLOY_TMP_DIR/$ARCHIVE_NAME" -C "$NEW_RELEASE"
             rm -f "$DEPLOY_TMP_DIR/$ARCHIVE_NAME"
+
+            cd "$NEW_RELEASE"
+            npm ci --no-audit --no-fund
+            test -f "$NEW_RELEASE/node_modules/next/dist/bin/next"
 
             if [ -e "$CURRENT_LINK" ] || [ -L "$CURRENT_LINK" ]; then
               rm -rf "$CURRENT_LINK"
@@ -113,5 +120,11 @@ jobs:
             fi
 
             if command -v sudo >/dev/null 2>&1; then
-              sudo systemctl reload nginx || true
+              sudo systemctl daemon-reload
+              sudo systemctl restart "$SYSTEMD_SERVICE"
+              sudo systemctl reload nginx
+            else
+              systemctl daemon-reload
+              systemctl restart "$SYSTEMD_SERVICE"
+              systemctl reload nginx
             fi
